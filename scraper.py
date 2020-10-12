@@ -6,14 +6,18 @@ Created on Wed Sep 23 21:02:51 2020
 """
 
 import time
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import json
 
-DRIVER_URL='/usr/lib/chromium-browser/chromedriver'
+DRIVER_PATH='/usr/lib/chromium-browser/chromedriver'
+options = Options()
+options.headless = True
+options.add_argument("--window-size=1920,1200")
 
 def scrap_flipkart(search_text):
-    driver = webdriver.Chrome(DRIVER_URL)
+    driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
     driver.get('https://www.flipkart.com')
     time.sleep(5)
 
