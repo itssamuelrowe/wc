@@ -60,7 +60,14 @@ def scrap_flipkart(search_text):
             customer_names = soup.find_all("p",{"class" : "_3LYOAd _3sxSiS"})#customer name
             ratings_list = soup.find_all("div",{"class" : "hGSR34 E_uFuv"})#ratings
             dates = soup.find_all("p",{"class" : "_3LYOAd"})
-            for review_title, review_content, customer_name, ratings, date in zip(review_titles, review_contents, customer_names, ratings_list, dates):
+
+            filtered_dates = []
+            for date in dates:
+                print(date.text)
+                if date.text.find(",") >= 0:
+                    filtered_dates.append(date)
+
+            for review_title, review_content, customer_name, ratings, date in zip(review_titles, review_contents, customer_names, ratings_list, filtered_dates):
               result.append({
                 "review_title": review_title.text,
                 "review_content": strip_read_more(review_content.text),
