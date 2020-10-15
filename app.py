@@ -1,23 +1,35 @@
 from flask import Flask, render_template,  session, redirect, request, jsonify
 from flask_cors import CORS,cross_origin
-from scraper import scrap_flipkart
+from scraper import scrap_flipkart, scrap_amazon
 import json
 
+# Initialize the Flask application. This is where we attach the routes.
 app = Flask(__name__)
 
+# Create the index route. Add CORS. It loads the index.html page.
 @app.route('/', methods=['GET'])
 @cross_origin()
 def homePage():
 	return render_template("index.html")
 
+# Create the scrap route. It triggers the Flipkart and Amazon scrapper. It renders the result.html template.
 @app.route('/scrap', methods=['GET'])
 @cross_origin()
 def scrap():
+	# The search text the user entered in the index page.
 	search_text = request.args.get("query")
-	reviews = scrap_flipkart(search_text)
+	
+	# Trigger the Flipkart and Amazon scraper. The results are merged into a single list.
+	flipkart_reviews = scrap_flipkart(search_text)
+	amazon_reviews = scrap_amazon(search_text)
+	reviews = flipkart_reviews + amazon_reviews
+	
 	#print(json.dumps(reviews, indent=4))
 	
-	return render_template("result.html", reviews=reviews)
+	# Comment the following return statement when you are working on the UI.
+	# return render_template("result.html", reviews=reviews)
+
+	# Render the template using dummy data. This is used for debugging purposes. We use early exit when the scrappers are live.
 	return render_template("result.html", reviews=[
     {
         "review_title": "Amazing Experience",

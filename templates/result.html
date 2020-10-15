@@ -16,6 +16,7 @@
     		<th>Review Content</th>
     		<th>Ratings</th>
     		<th>Date</th>
+    		<th>Platform</th>
     	</tr>
 		  {% for review in reviews %}
 		    <tr>
@@ -24,6 +25,7 @@
 		      <td>{{ review.review_content }}</td>
 		      <td>{{ review.ratings }}</td>
 		      <td>{{ review.date }}</td>
+		      <td>{{ review.platform }}</td>
 		    </tr>
 		  {% endfor %}
 	</table>
