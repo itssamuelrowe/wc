@@ -11,20 +11,28 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import json
 
-DRIVER_PATH='/usr/lib/chromium-browser/chromedriver'
+# The configurations we will be using when initializing a browser instance.
+DRIVER_PATH = '/usr/lib/chromium-browser/chromedriver'
 options = Options()
 options.headless = True
 options.add_argument("--window-size=1920,1200")
 
 def scrap_flipkart(search_text):
+    # Create an instance of Chrome. This will open a headless browser.
     driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
+    # Open Flipkart
     driver.get('https://www.flipkart.com')
     
+    # Wait for the page to.
     time.sleep(5)
+    # Close the login dialog.
     driver.find_element_by_class_name('_2AkmmA._29YdH8').click()
 
+    # Wait for things to initialize.
     time.sleep(5)
+    # Find the search bar.
     user_input = driver.find_element_by_class_name('LM6RPg')
+    # Acquire focus of search bar.
     user_input.click()
 
     # initiate a new input variable here to take the apps response instead of Redmi note 5 

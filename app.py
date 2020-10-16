@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Create the index route. Add CORS. It loads the index.html page.
 @app.route('/', methods=['GET'])
 @cross_origin()
-def homePage():
+def index():
 	return render_template("index.html")
 
 # Create the scrap route. It triggers the Flipkart and Amazon scrapper. It renders the result.html template.
@@ -27,7 +27,7 @@ def scrap():
 	#print(json.dumps(reviews, indent=4))
 	
 	# Comment the following return statement when you are working on the UI.
-	# return render_template("result.html", reviews=reviews)
+	return render_template("result.html", reviews=reviews)
 
 	# Render the template using dummy data. This is used for debugging purposes. We use early exit when the scrappers are live.
 	return render_template("result.html", reviews=[
