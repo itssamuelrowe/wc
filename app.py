@@ -10,27 +10,27 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 @cross_origin()
 def index():
-	return render_template("index.html")
+    return render_template("index.html")
 
 # Create the scrap route. It triggers the Flipkart and Amazon scrapper. It renders the result.html template.
 @app.route('/scrap', methods=['GET'])
 @cross_origin()
 def scrap():
-	# The search text the user entered in the index page.
-	search_text = request.args.get("query")
-	
-	# Trigger the Flipkart and Amazon scraper. The results are merged into a single list.
-	flipkart_reviews = scrap_flipkart(search_text)
-	amazon_reviews = scrap_amazon(search_text)
-	reviews = flipkart_reviews + amazon_reviews
-	
-	#print(json.dumps(reviews, indent=4))
-	
-	# Comment the following return statement when you are working on the UI.
-	return render_template("result.html", reviews=reviews)
+    # The search text the user entered in the index page.
+    search_text = request.args.get("query")
+    print(search_text)
+    # Trigger the Flipkart and Amazon scraper. The results are merged into a single list.
+    flipkart_reviews = scrap_flipkart(search_text)
+    amazon_reviews = scrap_amazon(search_text)
+    reviews = flipkart_reviews + amazon_reviews
+    
+    #print(json.dumps(reviews, indent=4))
+    
+    # Comment the following return statement when you are working on the UI.
+    return render_template("result.html", reviews=reviews)
 
-	# Render the template using dummy data. This is used for debugging purposes. We use early exit when the scrappers are live.
-	return render_template("result.html", reviews=[
+    # Render the template using dummy data. This is used for debugging purposes. We use early exit when the scrappers are live.
+    return render_template("result.html", reviews=[
     {
         "review_title": "Amazing Experience",
         "review_content": "I am impressed by the polycarbonate build of the iPhone 5c, which is excellent to hold and very sturdy. No squeaky noises that comes from many plastic shelled smartphones as such. I recently bought this from a local store as the particular seller cannot deliver the item to my pin code. I was using an iPhone 4 for a long time but it started to die on me, so had to make a choice between Nexus 5 and iPhone 5c. Nexus was pure android and I wanted to shift this time but the battery reviews made me think for the 5c. So finally made my choice and went for the 8GB. The moment I held it for the first time i was blown away by the compactness for the phone. It's pretty fast not like nexus or note or xperia z1, but it works just more than fine. Smooth UI helps in usability not much hassles or complications. But make sure to get a case for this like spigen or skech, because it's a glossy back (not very shiny) it attracts scratches easily if you put the phone and keys in the same pocket.Regarding the screen part, iPhone screens are known for their natural colors not like over saturated screens of many smartphones. Viewing angles are excellent, brightness levels are great. Also the speaker is of good quality as the sound it imparts is well pitched. Earpiece is very good, call quality is incredible no drops. Last but no the least lightning connector charger the phone faster than average and the ear pods which comes out of the box are just awesome. Very good bass.PS - This is an average consumer review I am no tech guy.",
@@ -153,4 +153,4 @@ def scrap():
 ])
 
 if __name__ == '__main__':
-	app.run()
+    app.run()
