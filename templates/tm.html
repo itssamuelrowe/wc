@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<title>Top Modelling | Samsung M31 Black</title>
+
+{% endblock title%}
+
+{% block body %}
+
+<div class="container" style="padding: 64px; background: white">
+    <div class="row" style="width: 100%">
+	    <div class="col-lg-4">
+	    	<img style="height: 500px; width: auto" src="/static/product.jpg" />
+	    	<h5 style="margin-top: 12px">Samsung M31 Black</h5>
+	    </div>
+	    <div class="col-lg-4">
+	    	<p>
+			<strong>Good topics</strong><br />
+			1.	Good display<br />
+			2.	Multiple options available<br />
+			3.	Finger print sensor<br />
+			4.	Value for money<br />
+			5.	Good mobile camera<br />
+			6.	Fast charging<br />
+			7.	Quality<br />
+	    </div>
+	    <div class="col-lg-4">
+	    	<p>
+			<strong>Bad topics</strong><br />
+			1.	Low speed<br />
+			2.	Heating issues<br />
+			3.	Internet and network issues<br />
+			4.	Servicing issue<br />
+			5.	Packaging issues<br />
+	    	</p>
+	    </div>
+	</div>
+</div>
+
+{% endblock body %}

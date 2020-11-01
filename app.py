@@ -12,6 +12,12 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+# Create the tm route (topic-modelling). Add CORS. It loads the tm.html page.
+@app.route('/tm', methods=['GET'])
+@cross_origin()
+def tm():
+    return render_template("tm.html")
+
 # Create the scrap route. It triggers the Flipkart and Amazon scrapper. It renders the result.html template.
 @app.route('/scrap', methods=['GET'])
 @cross_origin()
