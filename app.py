@@ -26,14 +26,14 @@ def scrap():
     search_text = request.args.get("query")
     print(search_text)
     # Trigger the Flipkart and Amazon scraper. The results are merged into a single list.
-    flipkart_reviews = scrap_flipkart(search_text)
-    amazon_reviews = scrap_amazon(search_text)
-    reviews = flipkart_reviews + amazon_reviews
+    # flipkart_reviews = scrap_flipkart(search_text)
+    # amazon_reviews = scrap_amazon(search_text)
+    # reviews = flipkart_reviews + amazon_reviews
     
     #print(json.dumps(reviews, indent=4))
     
     # Comment the following return statement when you are working on the UI.
-    return render_template("result.html", reviews=reviews)
+    # return render_template("result.html", reviews=reviews)
 
     # Render the template using dummy data. This is used for debugging purposes. We use early exit when the scrappers are live.
     return render_template("result.html", reviews=[
